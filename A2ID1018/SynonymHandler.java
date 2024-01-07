@@ -120,7 +120,30 @@ class SynonymHandler
     // the type IllegalArgumentException is thrown.
 	public static String[] removeSynonymLine (String[] synonymData,
 	    String word) throws IllegalArgumentException
-	{
+    {
+        boolean wordFound = false;
+
+        //String[] removeData = new String[synonymData.length - 1];
+        for (int i = 0; i < synonymData.length; i++){
+            if (synonymData[i].startsWith(word +":")){
+                wordFound = true;
+                continue;
+            }
+        
+        }
+
+        if (!wordFound){
+            throw new IllegalArgumentException(word + "not present");
+        
+        }
+        return synonymData;
+
+
+            
+        
+
+
+	
 		// add code here
 	}
 
