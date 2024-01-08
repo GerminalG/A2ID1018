@@ -147,9 +147,12 @@ class SynonymHandler
 		// add code here
 	}
 
-    // getSynonyms returns synonyms in a given synonym line.
+    // getSynonyms returns synonyms in a given synonym line. 
 	private static String[] getSynonyms (String synonymLine)
 	{
+        String regex = ":";
+        String[] synonyms = synonymLine.split(regex);
+        return synonyms;
         // add code here
 	}
 
