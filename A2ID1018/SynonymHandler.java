@@ -21,6 +21,8 @@ Author: Fadil Galjic
 
 import java.io.*;    // FileReader, BufferedReader, PrintWriter,
                      // IOException
+import java.util.ArrayList;
+import java.util.List;
 
 class SynonymHandler
 {
@@ -124,11 +126,14 @@ class SynonymHandler
         boolean wordFound = false;
 
         //String[] removeData = new String[synonymData.length - 1];
+        //allowing elements to be added and removed from the list as needed
+        ArrayList<String> removeData = new ArrayList<>();
         for (int i = 0; i < synonymData.length; i++){
-            if (synonymData[i].startsWith(word +"|")){
+            if (synonymData[i].startsWith(word +" | ")){
                 wordFound = true;
                 continue;
             }
+            removeData.add(synonymData[i]);
         
         }
 
@@ -136,7 +141,8 @@ class SynonymHandler
             throw new IllegalArgumentException(word + "not present");
         
         }
-        return synonymData;
+        //converts the removeData list back to an array and returns it.
+        return removeData.toArray(new String[0]);
 
 
             
@@ -188,37 +194,21 @@ class SynonymHandler
 	    throws IllegalArgumentException, IllegalStateException
 	{
         boolean wordFound = false;
-        int index = synonymLineIndex(synonymData, word);
         String []synonymsArray = getSynonyms(getSynonymLine(synonymData, word));
-        String[] newArray = new String[synonymsArray.length - 1];
-        int j = 0;
-        int r = -1;
+        
+        if (synonymsArray.length <= 1) 
+        {
+            throw new IllegalStateException("Cannot remove the only synonym for the word");
+        }
+        List<String> removedSynonyms = new ArrayList<>();
         for (int i = 0; i < synonymsArray.length; i++){
-
             if (synonymsArray[i].equals(synonym))
             {
-                r = i;
+                wordFound = true;
                 continue;                             
-            }else{
-                newArray[j] = synonymsArray[i];
-                j++;
             }
-        }
-        /***if (r != -1)
-        {
+            removedSynonyms.add(synonymsArray[i]);
             
-            int j = 0;
-            for (int i = 0; i < synonymsArray.length; i++);
-            {
-                if (i != r)
-                {
-                    newArray[j] = synonymsArray[i];//idk how to fix this
-                    j++;
-
-                }
-            }***/
-            
-
         }
         
 
