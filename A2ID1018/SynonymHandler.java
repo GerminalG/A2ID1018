@@ -125,7 +125,7 @@ class SynonymHandler
 
         //String[] removeData = new String[synonymData.length - 1];
         for (int i = 0; i < synonymData.length; i++){
-            if (synonymData[i].startsWith(word +":")){
+            if (synonymData[i].startsWith(word +"|")){
                 wordFound = true;
                 continue;
             }
@@ -150,6 +150,7 @@ class SynonymHandler
     // getSynonyms returns synonyms in a given synonym line. 
 	private static String[] getSynonyms (String synonymLine)
 	{
+        
         String regex = ", ";
         String[] synonyms = synonymLine.split(regex);
         return synonyms;
@@ -165,12 +166,8 @@ class SynonymHandler
 	{
         boolean wordFound = false;
         int index = synonymLineIndex(synonymData, word);
-        String newSynonymLine = getSynonymLine(synonymData, word) + ", " + synonym;
+        String newSynonymLine = word + " | " + getSynonymLine(synonymData, word) + ", " + synonym;
         synonymData[index] = newSynonymLine;
-
-        
-
-
 
         if (!wordFound){
             throw new IllegalArgumentException(word + "not present");
@@ -191,12 +188,48 @@ class SynonymHandler
 	    throws IllegalArgumentException, IllegalStateException
 	{
         boolean wordFound = false;
+        int index = synonymLineIndex(synonymData, word);
+        String []synonymsArray = getSynonyms(getSynonymLine(synonymData, word));
+        String[] newArray = new String[synonymsArray.length - 1];
+        int j = 0;
+        int r = -1;
+        for (int i = 0; i < synonymsArray.length; i++){
+
+            if (synonymsArray[i].equals(synonym))
+            {
+                r = i;
+                continue;                             
+            }else{
+                newArray[j] = synonymsArray[i];
+                j++;
+            }
+        }
+        /***if (r != -1)
+        {
+            
+            int j = 0;
+            for (int i = 0; i < synonymsArray.length; i++);
+            {
+                if (i != r)
+                {
+                    newArray[j] = synonymsArray[i];//idk how to fix this
+                    j++;
+
+                }
+            }***/
+            
+
+        }
+        
+
+                
 
 
         if (!wordFound){
             throw new IllegalArgumentException(word + "not present");
         
         }
+    
         // add code here
 	}
 
