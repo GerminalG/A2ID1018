@@ -164,8 +164,11 @@ class SynonymHandler
 	    String word, String synonym) throws IllegalArgumentException
 	{
         boolean wordFound = false;
-        int index = synonymLineIndex(synonymData, word); //check if exists
-        String newSynonymLine = word
+        int index = synonymLineIndex(synonymData, word);
+        String newSynonymLine = getSynonymLine(synonymData, word) + ", " + synonym;
+        synonymData[index] = newSynonymLine;
+
+        
 
 
 
@@ -173,6 +176,7 @@ class SynonymHandler
             throw new IllegalArgumentException(word + "not present");
         
         }
+
         // add code here
 	}
 
