@@ -150,7 +150,7 @@ class SynonymHandler
     // getSynonyms returns synonyms in a given synonym line. 
 	private static String[] getSynonyms (String synonymLine)
 	{
-        String regex = ":";
+        String regex = ", ";
         String[] synonyms = synonymLine.split(regex);
         return synonyms;
         // add code here
@@ -164,6 +164,9 @@ class SynonymHandler
 	    String word, String synonym) throws IllegalArgumentException
 	{
         boolean wordFound = false;
+        int index = synonymLineIndex(synonymData, word); //check if exists
+        String newSynonymLine = word
+
 
 
         if (!wordFound){
@@ -185,7 +188,7 @@ class SynonymHandler
 	{
         boolean wordFound = false;
 
-        
+
         if (!wordFound){
             throw new IllegalArgumentException(word + "not present");
         
