@@ -228,19 +228,29 @@ class SynonymHandler
     private static void sortIgnoreCase (String[] strings)
     {
         int n = strings.length;
+        // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
-    
+            String minStr = strings[i];
             for (int j = i + 1; j < n; j++) {
-                if (strings[j].compareToIgnoreCase(strings[minIndex]) < 0) {
-                    minIndex = j;
+                /*compareTo() will return a -ve value, 
+            if string1 (strings[j]) is smaller than string2 (minStr)*/
+                if (strings[j].compareToIgnoreCase(minStr) < 0) {
+                    //update
+                    minStr = strings[j];
                 }
             }
-    
+             // Swapping the minimum element 
+        if (minIndex != i)
+        {
             String temp = strings[minIndex];
             strings[minIndex] = strings[i];
             strings[i] = temp;
+
         }
+        }
+       
+        
     
         // add code here
 	}
