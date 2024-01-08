@@ -259,10 +259,10 @@ class SynonymHandler
     // the synonyms in this line
     private static String sortSynonymLine (String synonymLine)
     {
-        String[] synonyms = synonymLine.split(", ");
-        sortIgnoreCase(synonyms);
-        return String.join(", ", synonyms);
-
+        String[] synonymsSorted = getSynonyms(synonymLine);
+        sortIgnoreCase(synonymsSorted);
+        return String.join(", ", synonymsSorted);
+        
 	    // add code here
 	}
 
