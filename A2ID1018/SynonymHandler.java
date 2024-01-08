@@ -237,6 +237,21 @@ class SynonymHandler
     // the selection sort algorithm
     private static void sortIgnoreCase (String[] strings)
     {
+        int n = strings.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+    
+            for (int j = i + 1; j < n; j++) {
+                if (strings[j].compareToIgnoreCase(strings[minIndex]) < 0) {
+                    minIndex = j;
+                }
+            }
+    
+            String temp = strings[minIndex];
+            strings[minIndex] = strings[i];
+            strings[i] = temp;
+        }
+    
         // add code here
 	}
 
@@ -244,6 +259,10 @@ class SynonymHandler
     // the synonyms in this line
     private static String sortSynonymLine (String synonymLine)
     {
+        String[] synonyms = synonymLine.split(", ");
+        sortIgnoreCase(synonyms);
+        return String.join(", ", synonyms);
+
 	    // add code here
 	}
 
@@ -251,6 +270,12 @@ class SynonymHandler
     // synonym lines and the synonyms in these lines
 	public static void sortSynonymData (String[] synonymData)
 	{
+        for (int i = 0; i < synonymData.length; i++) 
+        {
+            synonymData[i] = sortSynonymLine(synonymData[i]);
+        }
+        sortIgnoreCase(synonymData);
+
         // add code here
 	}
 }
