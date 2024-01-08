@@ -163,6 +163,13 @@ class SynonymHandler
 	public static void addSynonym (String[] synonymData,
 	    String word, String synonym) throws IllegalArgumentException
 	{
+        boolean wordFound = false;
+
+
+        if (!wordFound){
+            throw new IllegalArgumentException(word + "not present");
+        
+        }
         // add code here
 	}
 
@@ -176,6 +183,13 @@ class SynonymHandler
 	    String word, String synonym)
 	    throws IllegalArgumentException, IllegalStateException
 	{
+        boolean wordFound = false;
+
+        
+        if (!wordFound){
+            throw new IllegalArgumentException(word + "not present");
+        
+        }
         // add code here
 	}
 
