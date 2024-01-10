@@ -143,14 +143,6 @@ class SynonymHandler
         }
         //converts the removeData list back to an array and returns it.
         return removeData.toArray(new String[0]);
-
-
-            
-        
-
-
-	
-		// add code here
 	}
 
     // getSynonyms returns synonyms in a given synonym line. 
@@ -210,9 +202,6 @@ class SynonymHandler
             removedSynonyms.add(synonymsArray[i]);
             
         }
-        
-
-                
 
 
         if (!wordFound){
