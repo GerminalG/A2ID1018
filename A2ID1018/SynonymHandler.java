@@ -250,7 +250,8 @@ class SynonymHandler
     {
         String[] synonymsSorted = getSynonyms(synonymLine);
         sortIgnoreCase(synonymsSorted);
-        return String.join(", ", synonymsSorted);
+        //Add word here. word, " | " +
+        return String.join( ", ", synonymsSorted);
         
 	    // add code here
 	}
